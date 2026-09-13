@@ -1,0 +1,18 @@
+{
+  "name": "association-management-system",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Association Management System monorepo — Web (React) + Desktop (Tauri) sharing one Supabase backend.",
+  "scripts": {
+    "db:start": "supabase start",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "dev:web": "pnpm --filter web dev",
+    "dev:desktop": "pnpm --filter desktop tauri dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

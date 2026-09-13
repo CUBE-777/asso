@@ -1,0 +1,20 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Online-first React+TypeScript web client (Architecture Doc Section 4).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@ams/ui": "workspace:*",
+    "@ams/features": "workspace:*",
+    "@ams/data-access": "workspace:*",
+    "@ams/auth": "workspace:*",
+    "@ams/i18n": "workspace:*",
+    "@supabase/supabase-js": "^2.45.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  }
+}

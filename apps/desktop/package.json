@@ -1,0 +1,24 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline-first Tauri+React+TypeScript desktop client, shares UI/features with the web app (Architecture Doc Section 4).",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@ams/ui": "workspace:*",
+    "@ams/features": "workspace:*",
+    "@ams/data-access": "workspace:*",
+    "@ams/sync": "workspace:*",
+    "@ams/auth": "workspace:*",
+    "@ams/i18n": "workspace:*",
+    "@supabase/supabase-js": "^2.45.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}
