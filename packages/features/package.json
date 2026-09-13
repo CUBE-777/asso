@@ -3,5 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "main": "./src/index.ts",
-  "types": "./src/index.ts"
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@ams/data-access": "workspace:*",
+    "@ams/types": "workspace:*",
+    "@ams/validation": "workspace:*",
+    "@ams/ui": "workspace:*",
+    "@ams/auth": "workspace:*",
+    "react": "^18.3.0",
+    "react-i18next": "^15.0.0",
+    "react-hook-form": "^7.53.0",
+    "@hookform/resolvers": "^3.9.0"
+  }
 }
