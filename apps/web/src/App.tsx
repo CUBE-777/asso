@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthProvider, useAuth } from '@ams/auth';
 import { initI18n, applyDirection } from '@ams/i18n';
 import { AppShell, type NavItem } from '@ams/ui';
-import { MembersListPage, MemberFormPage, MemberDetailPage } from '@ams/features';
+import { MembersListPage, MemberFormPage, MemberDetailPage, ProjectsListPage, ProjectFormPage, ProjectDetailPage } from '@ams/features';
 import { LoginPage } from './pages/LoginPage';
 
 initI18n('ar');
@@ -72,6 +72,26 @@ function AuthenticatedApp() {
           }
         />
         <Route path="/members/:id" element={<MemberDetailRoute />} />
+
+        <Route
+          path="/projects"
+          element={
+            <ProjectsListPage
+              onOpenProject={(id) => navigate(`/projects/${id}`)}
+              onAddProject={() => navigate('/projects/new')}
+            />
+          }
+        />
+        <Route
+          path="/projects/new"
+          element={
+            <ProjectFormPage
+              onSaved={(id) => navigate(`/projects/${id}`)}
+              onCancel={() => navigate('/projects')}
+            />
+          }
+        />
+        <Route path="/projects/:id" element={<ProjectDetailRoute />} />
       </Routes>
     </AppShell>
   );
@@ -81,6 +101,12 @@ function MemberDetailRoute() {
   const { pathname } = useLocation();
   const id = pathname.split('/').pop()!;
   return <MemberDetailPage memberId={id} />;
+}
+
+function ProjectDetailRoute() {
+  const { pathname } = useLocation();
+  const id = pathname.split('/').pop()!;
+  return <ProjectDetailPage projectId={id} />;
 }
 
 function AppGate() {
