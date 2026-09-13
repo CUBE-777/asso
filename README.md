@@ -55,6 +55,7 @@ a live Supabase project**) Vite + React + TypeScript app:
 - **`packages/auth`** — `AuthProvider`/`useAuth()` wrapping Supabase session state, the signed-in user's profile, and their effective permission set (via the new `get_my_permissions()` RPC — migration `0034_get_my_permissions.sql`). This is for UI gating only; RLS is still what actually protects data.
 - **`packages/data-access`** — typed CRUD functions for `members` (`listMembers` with full-text search via `search_vector`, `getMember`, `createMember`, `updateMember`, `softDeleteMember`, `getMemberStatusHistory`), mapping DB snake_case to the shared camelCase types.
 - **`packages/features/members`** — `MembersListPage`, `MemberFormPage` (React Hook Form + the shared Zod schema from `packages/validation`), `MemberDetailPage` (profile + status history timeline).
+- **`packages/features/projects`** — same pattern: `ProjectsListPage`, `ProjectFormPage`, `ProjectDetailPage` (now also showing the project's linked activities via `listActivitiesForProject`). Added `Select`/`Textarea` to `packages/ui` since projects need them and members didn't.
 - **`apps/web`** — routing (`react-router-dom`), a login page, and the shell wiring it together; the sidebar only shows nav entries the signed-in user actually has permission for.
 
 ### This has not been run or verified yet

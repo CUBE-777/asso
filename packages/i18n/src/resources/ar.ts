@@ -51,4 +51,30 @@ export default {
   common: {
     loading: 'جاري التحميل...',
   },
+  projects: {
+    title: 'المشاريع',
+    addProject: 'إضافة مشروع',
+    search: 'البحث عن مشروع...',
+    empty: 'لا يوجد مشاريع بعد. أضيفوا أول مشروع للبدء.',
+    fields: {
+      name: 'الاسم',
+      description: 'الوصف',
+      objectives: 'الأهداف',
+      startDate: 'تاريخ البداية',
+      endDate: 'تاريخ النهاية',
+      status: 'الحالة',
+    },
+    status: {
+      planning: 'قيد التخطيط',
+      active: 'جاري',
+      on_hold: 'متوقف مؤقتا',
+      completed: 'منجز',
+      cancelled: 'ملغى',
+    },
+    activitiesTitle: 'الأنشطة المرتبطة',
+    noActivities: 'لا توجد أنشطة مرتبطة بهذا المشروع بعد.',
+    save: 'حفظ',
+    cancel: 'إلغاء',
+    saveError: 'تعذر حفظ المشروع. تحققوا من المعطيات وحاولوا من جديد.',
+  },
 };

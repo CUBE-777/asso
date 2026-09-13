@@ -51,4 +51,30 @@ export default {
   common: {
     loading: 'Loading...',
   },
+  projects: {
+    title: 'Projects',
+    addProject: 'Add project',
+    search: 'Search projects...',
+    empty: 'No projects yet. Add the first project to get started.',
+    fields: {
+      name: 'Name',
+      description: 'Description',
+      objectives: 'Objectives',
+      startDate: 'Start date',
+      endDate: 'End date',
+      status: 'Status',
+    },
+    status: {
+      planning: 'Planning',
+      active: 'Active',
+      on_hold: 'On hold',
+      completed: 'Completed',
+      cancelled: 'Cancelled',
+    },
+    activitiesTitle: 'Related activities',
+    noActivities: 'No activities linked to this project yet.',
+    save: 'Save',
+    cancel: 'Cancel',
+    saveError: 'Could not save the project. Check the data and try again.',
+  },
 };

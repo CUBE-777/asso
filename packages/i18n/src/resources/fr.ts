@@ -51,4 +51,30 @@ export default {
   common: {
     loading: 'Chargement...',
   },
+  projects: {
+    title: 'Projets',
+    addProject: 'Ajouter un projet',
+    search: 'Rechercher un projet...',
+    empty: "Aucun projet pour l'instant. Ajoutez le premier projet pour commencer.",
+    fields: {
+      name: 'Nom',
+      description: 'Description',
+      objectives: 'Objectifs',
+      startDate: 'Date de début',
+      endDate: 'Date de fin',
+      status: 'Statut',
+    },
+    status: {
+      planning: 'Planification',
+      active: 'En cours',
+      on_hold: 'En pause',
+      completed: 'Terminé',
+      cancelled: 'Annulé',
+    },
+    activitiesTitle: 'Activités liées',
+    noActivities: "Aucune activité liée à ce projet pour l'instant.",
+    save: 'Enregistrer',
+    cancel: 'Annuler',
+    saveError: "Impossible d'enregistrer le projet. Vérifiez les données et réessayez.",
+  },
 };

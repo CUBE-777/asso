@@ -44,3 +44,16 @@ export function memberStatusTone(status: string): BadgeTone {
       return 'neutral';
   }
 }
+
+export function projectStatusTone(status: string): BadgeTone {
+  switch (status) {
+    case 'active':
+      return 'success';
+    case 'on_hold':
+      return 'warning';
+    case 'cancelled':
+      return 'danger';
+    default:
+      return 'neutral';
+  }
+}
