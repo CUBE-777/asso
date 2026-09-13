@@ -45,6 +45,31 @@ via `0003_seed_roles_permissions.sql`. There is no separate seed script — seed
 is itself a migration, so a fresh environment and a production environment run
 through the exact same reproducible steps (Architecture Doc Section 52).
 
+## Frontend: first real slice (Web — Members module)
+
+`apps/web` is no longer an empty shell. It's a working (but **not yet run against
+a live Supabase project**) Vite + React + TypeScript app:
+
+- **`packages/ui`** — design tokens (`tokens.css`) and a small component set (`Button`, `Input`/`Field`, `Card`/`Badge`, `AppShell`). Dark theme by default, Arabic + RTL by default via `<html dir>`, IBM Plex Sans Arabic/Sans typography, a restrained teal-green accent — see the design rationale in the conversation this shipped from, deliberately avoiding the generic "AI tool" palette.
+- **`packages/i18n`** — `ar`/`fr`/`en` resources and an `initI18n()`/`applyDirection()` pair that keeps `<html dir="rtl|ltr">` in sync with the active language, which is what actually makes RTL layout correct throughout (via CSS logical properties in `AppShell`) rather than needing per-component left/right branching.
+- **`packages/auth`** — `AuthProvider`/`useAuth()` wrapping Supabase session state, the signed-in user's profile, and their effective permission set (via the new `get_my_permissions()` RPC — migration `0034_get_my_permissions.sql`). This is for UI gating only; RLS is still what actually protects data.
+- **`packages/data-access`** — typed CRUD functions for `members` (`listMembers` with full-text search via `search_vector`, `getMember`, `createMember`, `updateMember`, `softDeleteMember`, `getMemberStatusHistory`), mapping DB snake_case to the shared camelCase types.
+- **`packages/features/members`** — `MembersListPage`, `MemberFormPage` (React Hook Form + the shared Zod schema from `packages/validation`), `MemberDetailPage` (profile + status history timeline).
+- **`apps/web`** — routing (`react-router-dom`), a login page, and the shell wiring it together; the sidebar only shows nav entries the signed-in user actually has permission for.
+
+### This has not been run or verified yet
+
+I wrote this against the schema and Supabase JS client API from documentation/training knowledge, not against a live project — I have no way to run `pnpm install` + `vite dev` + click through it in this environment. Treat it as a strong first draft, not a verified working app. Before trusting it:
+
+```bash
+cp .env.example .env.local     # fill in VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY
+                                # from a Supabase project where supabase db reset has run
+pnpm install
+pnpm dev:web
+```
+
+Then actually sign up a user (or insert one directly in Supabase Studio), assign it a role via `user_roles`, and click through: sign in → see the Members nav item (or not, depending on role) → list → add → detail. Whatever breaks first tells us exactly where to focus next — that feedback loop is the point of shipping this now rather than trying to perfect it blind.
+
 ## Status: Phases 1–9 (database layer) are implemented. Phases 10–14 are not.
 
 This repo currently contains a **complete, RLS-enforced PostgreSQL schema** for
