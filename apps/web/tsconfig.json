@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ams/ui": ["../../packages/ui/src/index.ts"],
+      "@ams/features": ["../../packages/features/src/index.ts"],
+      "@ams/data-access": ["../../packages/data-access/src/index.ts"],
+      "@ams/auth": ["../../packages/auth/src/index.ts"],
+      "@ams/i18n": ["../../packages/i18n/src/index.ts"],
+      "@ams/types": ["../../packages/types/src/index.ts"],
+      "@ams/validation": ["../../packages/validation/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"],
+  "references": [
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/features" },
+    { "path": "../../packages/data-access" },
+    { "path": "../../packages/auth" },
+    { "path": "../../packages/i18n" },
+    { "path": "../../packages/types" },
+    { "path": "../../packages/validation" }
+  ]
+}

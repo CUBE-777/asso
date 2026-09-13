@@ -5,7 +5,8 @@
   "description": "Online-first React+TypeScript web client (Architecture Doc Section 4).",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ams/ui": "workspace:*",
@@ -13,8 +14,23 @@
     "@ams/data-access": "workspace:*",
     "@ams/auth": "workspace:*",
     "@ams/i18n": "workspace:*",
+    "@ams/types": "workspace:*",
+    "@ams/validation": "workspace:*",
     "@supabase/supabase-js": "^2.45.0",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^6.26.0",
+    "react-i18next": "^15.0.0",
+    "i18next": "^23.14.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^5.4.0",
+    "typescript": "^5.5.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0"
   }
 }
