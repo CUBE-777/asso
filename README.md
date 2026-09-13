@@ -71,6 +71,22 @@ pnpm dev:web
 
 Then actually sign up a user (or insert one directly in Supabase Studio), assign it a role via `user_roles`, and click through: sign in → see the Members nav item (or not, depending on role) → list → add → detail. Whatever breaks first tells us exactly where to focus next — that feedback loop is the point of shipping this now rather than trying to perfect it blind.
 
+## Deploying the web app (Netlify)
+
+`netlify.toml` at the repo root is already configured for this pnpm monorepo. In the Netlify dashboard, for the site connected to this GitHub repo:
+
+1. **Site settings → Build & deploy → Build settings** should already pick up `netlify.toml`:
+   - Build command: `corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter web build`
+   - Publish directory: `apps/web/dist`
+   - If Netlify shows different values in the UI, override them to match `netlify.toml` (UI settings take priority over the file).
+2. **Site settings → Environment variables** — add:
+   - `VITE_SUPABASE_URL` — from your Supabase project's Settings → API
+   - `VITE_SUPABASE_ANON_KEY` — same page, the `anon` `public` key (never the `service_role` key)
+3. Trigger a deploy (push to `main`, or "Trigger deploy" in the Netlify UI).
+4. If the build fails, check the deploy log first — the most likely early failures are a missing environment variable (the app will still build, but Supabase calls will fail at runtime) or a pnpm workspace resolution error. Send me the exact log output and I'll fix it directly rather than guessing.
+
+Note: `apps/web`'s `build` script deliberately runs only `vite build`, not a full `tsc -b` type-check — the shared packages' TypeScript project-reference setup (`noEmit: true`) isn't configured for `tsc -b`'s composite-build mode, so a strict type-check would fail the build for a config reason, not a real code problem. Run `pnpm --filter web typecheck` separately/locally if you want type errors surfaced without blocking deploys.
+
 ## Status: Phases 1–9 (database layer) are implemented. Phases 10–14 are not.
 
 This repo currently contains a **complete, RLS-enforced PostgreSQL schema** for
